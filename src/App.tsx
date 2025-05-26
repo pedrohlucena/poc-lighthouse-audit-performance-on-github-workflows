@@ -15,7 +15,7 @@ export function App() {
 
   return (
     <>
-      {shouldShowContent && <p>Hello World!</p>}
+      {shouldShowContent && <p>Testing!</p>}
     </>
   )
 }
