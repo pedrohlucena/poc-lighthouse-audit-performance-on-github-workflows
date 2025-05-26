@@ -1,4 +1,4 @@
-name: Performance audit (With "Lighthouse" automated tool)
+name: Lighthouse's Performance Audit
 
 on:
   pull_request:
