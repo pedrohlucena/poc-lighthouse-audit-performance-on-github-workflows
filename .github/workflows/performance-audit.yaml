@@ -20,7 +20,7 @@ jobs:
         run: npm run build
 
       - name: Start application
-        run: npm run preview
+        run: npm run preview &
 
       - name: Lighthouse's performance audit
         uses: treosh/lighthouse-ci-action@v12
