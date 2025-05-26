@@ -1,0 +1,11 @@
+[
+    {
+        "path": "/*",
+        "timings": [
+            {
+                "metric": "first-contentful-paint",
+                "budget": 1000
+            }
+        ]
+    }
+]
