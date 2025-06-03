@@ -27,11 +27,6 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: npm run build
 
-      - name: Get opened pull request's source branch name and save on Github environment variables
-        run: |
-          OPENED_PULL_REQUEST_SOURCE_BRANCH="${{ github.head_ref }}"
-          echo "OPENED_PULL_REQUEST_SOURCE_BRANCH=$OPENED_PULL_REQUEST_SOURCE_BRANCH" >> $GITHUB_ENV
-
       - name: Deploy
         uses: netlify/actions/cli@master
         with:
