@@ -6,3 +6,6 @@
 
   [plugins.inputs.thresholds]
     performance = 0.95
+  
+  [[plugins.inputs.audits]]
+    path = "index.html"
