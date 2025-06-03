@@ -37,5 +37,8 @@ jobs:
 
           NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
 
+      - name: Wait for preview to be ready
+        run: "sleep 15"
+
       - name: Log deploy_site_preview step output
         run: 'echo "THE OUTPUT OF deploy_site_preview step is: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"'
