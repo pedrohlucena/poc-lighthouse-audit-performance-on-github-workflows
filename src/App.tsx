@@ -15,7 +15,7 @@ export function App() {
 
   return (
     <>
-      {shouldShowContent && <p>Testing!</p>}
+      {shouldShowContent && <p>Testing 123!</p>}
     </>
   )
 }
