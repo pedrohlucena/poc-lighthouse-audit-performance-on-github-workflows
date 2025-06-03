@@ -27,7 +27,8 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: npm run build
 
-      - name: Deploy
+      - id: deploy_site_preview
+        name: Deploy a site preview
         uses: netlify/actions/cli@master
         with:
           args: deploy --dir=dist
@@ -35,3 +36,6 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
 
           NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
+
+      - name: Log deploy_site_preview step output
+        run: 'echo "THE OUTPUT OF deploy_site_preview step is: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"'
