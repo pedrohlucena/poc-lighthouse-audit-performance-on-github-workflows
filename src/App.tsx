@@ -7,7 +7,7 @@ export function App() {
     () => {
       setTimeout(
         () => setShouldShowContent(true),
-        30 * 1000
+        25 * 1000
       );
     },
     []
