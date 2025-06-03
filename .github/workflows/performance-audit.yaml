@@ -37,8 +37,14 @@ jobs:
 
           NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
 
+      - name: Get Netlify URL
+        id: get_url
+        run: |
+          DEPLOY_URL=$(netlify deploy --json | jq -r '.deploy_url')
+          echo "NETLIFY_URL=$DEPLOY_URL" >> $GITHUB_OUTPUT
+
       - name: Wait for preview to be ready
         run: "sleep 15"
 
-      - name: Log deploy_site_preview step output
-        run: 'echo "THE OUTPUT OF deploy_site_preview step is: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"'
+      - name: Log deploy URL
+        run: 'echo "Preview URL: ${{ steps.get_url.outputs.NETLIFY_URL }}"'
