@@ -36,6 +36,9 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
 
+      - name: Wait for deployment preview to be ready
+        run: "sleep 30"
+
       - name: Try to get `deploy_site_preview` step outputs
         run: |
           echo "NETLIFY_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"
