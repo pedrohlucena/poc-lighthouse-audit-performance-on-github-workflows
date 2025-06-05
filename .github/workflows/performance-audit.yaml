@@ -34,17 +34,11 @@ jobs:
           args: deploy --dir=dist --json
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-
           NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
 
-      - name: Get Netlify URL
-        id: get_url
+      - name: Try to get `deploy_site_preview` step outputs
         run: |
-          DEPLOY_URL=$(netlify deploy --json | jq -r '.deploy_url')
-          echo "NETLIFY_URL=$DEPLOY_URL" >> $GITHUB_OUTPUT
-
-      - name: Wait for preview to be ready
-        run: "sleep 15"
-
-      - name: Log deploy URL
-        run: 'echo "Preview URL: ${{ steps.get_url.outputs.NETLIFY_URL }}"'
+          echo "NETLIFY_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"
+          echo "NETLIFY_OUTPUT::: ${{ steps.deploy_site_preview.outputs.NETLIFY_OUTPUT }}"
+          echo "NETLIFY_LOGS_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_LOGS_URL }}"
+          echo "NETLIFY_LIVE_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_LIVE_URL }}"
