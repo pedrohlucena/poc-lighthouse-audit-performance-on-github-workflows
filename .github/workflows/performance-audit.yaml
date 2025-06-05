@@ -34,7 +34,7 @@ jobs:
           NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           PROJECT_ID_ON_NETLIFY: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
         run: |
-          DEPLOY_OUTPUT=$(
+          DEPLOY_OUTPUT_IN_JSON=$(
             npx netlify-cli@$NETLIFY_CLI_LIBRARY_VERSION deploy \
               --dir=dist \
               --site=$PROJECT_ID_ON_NETLIFY \
@@ -42,9 +42,9 @@ jobs:
               --json
           )
 
-          echo "$DEPLOY_OUTPUT"
+          echo "$DEPLOY_OUTPUT_IN_JSON"
 
-          PREVIEW_URL=$(echo "$DEPLOY_OUTPUT" | jq -r '.deploy_url')
+          PREVIEW_URL=$(echo "$DEPLOY_OUTPUT_IN_JSON" | jq -r '.deploy_url')
 
           echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
 
