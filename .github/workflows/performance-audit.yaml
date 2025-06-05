@@ -42,7 +42,7 @@ jobs:
               --json
           )
 
-          echo -e "\DEPLOY_OUTPUT_IN_JSON: \n$DEPLOY_OUTPUT_IN_JSON\n"
+          echo -e "\nDEPLOY_OUTPUT_IN_JSON: \n\n$DEPLOY_OUTPUT_IN_JSON\n"
 
           PREVIEW_URL=$(echo "$DEPLOY_OUTPUT_IN_JSON" | jq -r '.deploy_url')
 
