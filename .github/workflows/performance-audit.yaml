@@ -48,8 +48,8 @@ jobs:
             echo "$DEPLOY_OUTPUT_IN_JSON" | jq -r '.deploy_url'
           )
 
-          echo "SITE_PREVIEW_URL=$SITE_PREVIEW_URL" >> $GITHUB_ENV
+          echo "SITE_PREVIEW_URL=$SITE_PREVIEW_URL" >> $GITHUB_OUTPUT
 
       - name: Display deploy information
         run: |
-          echo "Site preview URL: $SITE_PREVIEW_URL"
+          echo "Site preview URL: ${{ steps.deploy_site_preview.outputs.SITE_PREVIEW_URL }}"
