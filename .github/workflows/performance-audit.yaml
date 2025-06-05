@@ -29,8 +29,10 @@ jobs:
 
       - id: deploy_site_preview
         name: Deploy site preview
+        env:
+          NETLIFY_CLI_LIBRARY_VERSION: "18.1.0"
         run: |
-          DEPLOY_OUTPUT=$(npx netlify-cli@18.1.0 deploy --dir=dist --site='b08e084e-69d9-4cff-8bae-9203d2fd29f8' --auth='nfp_nhqnJFF8kVMF1kWq7B3iB89Qwg3ihowj76b6' --json)
+          DEPLOY_OUTPUT=$(npx netlify-cli@$NETLIFY_CLI_LIBRARY_VERSION deploy --dir=dist --site='b08e084e-69d9-4cff-8bae-9203d2fd29f8' --auth='nfp_nhqnJFF8kVMF1kWq7B3iB89Qwg3ihowj76b6' --json)
 
           echo "$DEPLOY_OUTPUT"
 
