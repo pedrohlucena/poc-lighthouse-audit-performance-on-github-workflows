@@ -34,7 +34,13 @@ jobs:
           NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           PROJECT_ID_ON_NETLIFY: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
         run: |
-          DEPLOY_OUTPUT=$(npx netlify-cli@$NETLIFY_CLI_LIBRARY_VERSION deploy --dir=dist --site=$PROJECT_ID_ON_NETLIFY --auth=$NETLIFY_ACCESS_TOKEN --json)
+          DEPLOY_OUTPUT=$(
+            npx netlify-cli@$NETLIFY_CLI_LIBRARY_VERSION deploy \
+              --dir=dist \
+              --site=$PROJECT_ID_ON_NETLIFY \
+              --auth=$NETLIFY_ACCESS_TOKEN \
+              --json
+          )
 
           echo "$DEPLOY_OUTPUT"
 
