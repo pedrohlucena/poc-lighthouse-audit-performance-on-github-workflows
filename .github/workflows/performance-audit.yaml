@@ -28,20 +28,20 @@ jobs:
         run: npm run build
 
       - id: deploy_site_preview
-        name: Deploy a site preview
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --dir=dist --json
+        name: Deploy site preview
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
-
-      - name: Wait for deployment preview to be ready
-        run: "sleep 30"
-
-      - name: Try to get `deploy_site_preview` step outputs
+          NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+          PROJECT_ID_ON_NETLIFY: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
         run: |
-          echo "NETLIFY_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_URL }}"
-          echo "NETLIFY_OUTPUT::: ${{ steps.deploy_site_preview.outputs.NETLIFY_OUTPUT }}"
-          echo "NETLIFY_LOGS_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_LOGS_URL }}"
-          echo "NETLIFY_LIVE_URL::: ${{ steps.deploy_site_preview.outputs.NETLIFY_LIVE_URL }}"
+          DEPLOY_OUTPUT=$(npx netlify-cli@18.1.0 deploy --dir=dist --site=${PROJECT_ID_ON_NETLIFY} --auth=${NETLIFY_ACCESS_TOKEN} --json)
+
+          echo "DEPLOY_OUTPUT=${DEPLOY_OUTPUT}" >> $GITHUB_ENV
+
+          echo "deploy_url=$(echo ${DEPLOY_OUTPUT} | jq -r '.url')" >> $GITHUB_OUTPUT
+
+          echo "logs_url=$(echo ${DEPLOY_OUTPUT} | jq -r '.logs')" >> $GITHUB_OUTPUT
+
+      - name: Display deploy information
+        run: |
+          echo "Preview URL: ${{ steps.deploy_preview.outputs.deploy_url }}"
+          echo "Logs URL: ${{ steps.deploy_preview.outputs.logs_url }}"
