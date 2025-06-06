@@ -56,4 +56,5 @@ jobs:
           SITE_PREVIEW_URL: "${{ steps.deploy_site_preview.outputs.SITE_PREVIEW_URL }}"
         run: |
           npx @lhci/cli@$LIGHTHOUSE_CI_CLI_LIBRARY_VERSION autorun \
-            --collect.url=$SITE_PREVIEW_URL
+            --collect.url=$SITE_PREVIEW_URL \
+            --config=.lighthouserc.json
