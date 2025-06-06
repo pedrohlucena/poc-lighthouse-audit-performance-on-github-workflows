@@ -50,6 +50,9 @@ jobs:
 
           echo "SITE_PREVIEW_URL=$SITE_PREVIEW_URL" >> $GITHUB_OUTPUT
 
-      - name: Display deploy information
+      - name: Performance audit
+        env:
+          LIGHTHOUSE_CI_CLI_LIBRARY_VERSION: "0.14.0"
+          SITE_PREVIEW_URL: "${{ steps.deploy_site_preview.outputs.SITE_PREVIEW_URL }}"
         run: |
-          echo "Site preview URL: ${{ steps.deploy_site_preview.outputs.SITE_PREVIEW_URL }}"
+          npx @lhci/cli@$LIGHTHOUSE_CI_CLI_LIBRARY_VERSION autorun --collect.url=$SITE_PREVIEW_URL
