@@ -1,4 +1,4 @@
-name: Performance audit (With "Lighthouse" automated tool)
+name: Application's performance audit
 
 on:
   pull_request:
@@ -10,20 +10,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
 
-      - name: Build application
+      - name: Install All Dependencies
+        run: npm i -f
+
+      - name: Build
+        env:
+          CI: true
+          NODE_OPTIONS: --max-old-space-size=4096
         run: npm run build
 
-      - name: Start application
-        run: npm run preview
+      - id: deploy_site_preview
+        name: Deploy site preview
+        env:
+          NETLIFY_CLI_LIBRARY_VERSION: "18.1.0"
+          NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+          PROJECT_ID_ON_NETLIFY: ${{ secrets.PROJECT_ID_ON_NETLIFY }}
+        run: |
+          DEPLOY_OUTPUT_IN_JSON=$(
+            npx netlify-cli@$NETLIFY_CLI_LIBRARY_VERSION deploy \
+              --dir=dist \
+              --site=$PROJECT_ID_ON_NETLIFY \
+              --auth=$NETLIFY_ACCESS_TOKEN \
+              --json
+          )
 
-      - name: Lighthouse's performance audit
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          urls: "http://localhost:3000"
-          budgetPath: ./performance-budget.json
+          echo -e "DEPLOY_OUTPUT_IN_JSON: \n$DEPLOY_OUTPUT_IN_JSON\n"
+
+          SITE_PREVIEW_URL=$(
+            echo "$DEPLOY_OUTPUT_IN_JSON" | jq -r '.deploy_url'
+          )
+
+          echo "SITE_PREVIEW_URL=$SITE_PREVIEW_URL" >> $GITHUB_OUTPUT
+
+      - name: Performance audit
+        env:
+          LIGHTHOUSE_CI_CLI_LIBRARY_VERSION: "0.14.0"
+          SITE_PREVIEW_URL: "${{ steps.deploy_site_preview.outputs.SITE_PREVIEW_URL }}"
+        run: |
+          npx @lhci/cli@$LIGHTHOUSE_CI_CLI_LIBRARY_VERSION autorun \
+            --collect.url=$SITE_PREVIEW_URL \
+            --config=.lighthouserc.json

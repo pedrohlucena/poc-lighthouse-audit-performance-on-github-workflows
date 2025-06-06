@@ -7,7 +7,7 @@ export function App() {
     () => {
       setTimeout(
         () => setShouldShowContent(true),
-        3000
+        1 * 1000
       );
     },
     []
@@ -15,7 +15,7 @@ export function App() {
 
   return (
     <>
-      {shouldShowContent && <p>Hello World!</p>}
+      {shouldShowContent && <p>Testing 123!</p>}
     </>
   )
 }
