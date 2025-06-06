@@ -1,6 +1,7 @@
 {
     "ci": {
         "collect": {
+            "numberOfRuns": 3,
             "settings": {
                 "onlyCategories": [
                     "performance"
