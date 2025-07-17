@@ -1,3 +1,5 @@
+const puppeteer = require("puppeteer");
+
 module.exports = {
     ci: {
         collect: {
@@ -8,7 +10,8 @@ module.exports = {
                 ],
                 chromeFlags: "--headless --no-sandbox --disable-gpu --disable-dev-shm-usage"
             },
-            puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs"
+            puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs",
+            chromePath: puppeteer.executablePath()
         },
         assert: {
             assertions: {
