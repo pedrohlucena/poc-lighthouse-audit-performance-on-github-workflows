@@ -8,7 +8,7 @@ module.exports = {
                 ],
                 chromeFlags: "--headless --no-sandbox --disable-gpu --disable-dev-shm-usage"
             },
-            puppeteerScript: "ci/scripts/lighthouse/lighthouse-audited-application-auth-middleware.js"
+            puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs"
         },
         assert: {
             assertions: {
