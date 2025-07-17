@@ -2,7 +2,7 @@
   "name": "poc-lighthouse-audit-performance-on-github-workflows",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

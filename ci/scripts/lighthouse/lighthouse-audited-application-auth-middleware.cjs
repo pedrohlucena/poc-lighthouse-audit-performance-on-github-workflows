@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+const puppeteer = require('puppeteer')
 
 const SIGNIN_FORM_ELEMENT_SLUG_TO_PUPPETEER_HTML_ELEMENT_SELECTOR = {
     EMAIL_INPUT: 'input[id="input-email"]',
@@ -14,7 +14,7 @@ const signInCredentials = {
 const SIGNIN_BASE_URL = "" // ⚠️ To alter ⚠️
 const SIGNIN_PATH = "" // ⚠️ To alter ⚠️
 
-export default async function () {
+module.exports = async function () {
     const browser = await puppeteer.launch({
         args: ['--no-sandbox']
     })

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     ci: {
         collect: {
             numberOfRuns: 3,
@@ -8,7 +8,7 @@ export default {
                 ],
                 chromeFlags: "--headless --no-sandbox --disable-gpu --disable-dev-shm-usage"
             },
-            puppeteerScript: "lighthouse-audited-application-auth-middleware.js"
+            puppeteerScript: "ci/scripts/lighthouse/lighthouse-audited-application-auth-middleware.js"
         },
         assert: {
             assertions: {
