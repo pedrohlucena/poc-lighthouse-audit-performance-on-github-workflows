@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Only puppeteer
         if: env.ENV == 'dev'
-        run: npm install puppeteer -f --no-save
+        run: npm install puppeteer --no-save --verbose
 
       - name: Build
         if: env.ENV == 'prod'
@@ -65,7 +65,7 @@ jobs:
           LIGHTHOUSE_CI_CLI_LIBRARY_VERSION: "0.14.0"
           URL_OF_SITE_TO_AUDIT_PERFORMANCE: ${{
             env.ENV == 'dev' &&
-            'https://web.letalk.com.br' ||
+            'https://web.letalk.com.br/board/410' ||
             steps.deploy_site_preview.outputs.SITE_PREVIEW_URL
             }}
         run: |
