@@ -7,7 +7,8 @@ module.exports = {
             settings: {
                 onlyCategories: [
                     "performance"
-                ]
+                ],
+                chromeFlags: "--no-sandbox"
             },
             puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs",
             chromePath: puppeteer.executablePath()
