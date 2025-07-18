@@ -16,7 +16,7 @@ const SIGNIN_PATH = "" // ⚠️ To alter ⚠️
 
 module.exports = async function () {
     const browser = await puppeteer.launch({
-
+        headless: true,
         args: ['--no-sandbox']
     })
 
