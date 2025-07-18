@@ -7,8 +7,7 @@ module.exports = {
             settings: {
                 onlyCategories: [
                     "performance"
-                ],
-                chromeFlags: "--headless --no-sandbox --disable-gpu --disable-dev-shm-usage"
+                ]
             },
             puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs",
             chromePath: puppeteer.executablePath()
