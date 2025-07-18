@@ -12,7 +12,9 @@ module.exports = {
             puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs",
             chromePath: puppeteer.executablePath(),
             puppeteerLaunchOptions: {
-                args: "--no-sandbox"
+                args: [
+                    "--no-sandbox"
+                ]
             }
         },
         assert: {
