@@ -90,5 +90,5 @@ jobs:
             steps.deploy_site_preview.outputs.SITE_PREVIEW_URL
             }}
         with:
-          urls: "$URL_OF_SITE_TO_AUDIT_PERFORMANCE"
+          urls: "https://web.letalk.com.br/board/410"
           configPath: "ci/config/lighthouse/.lighthouserc.js"
