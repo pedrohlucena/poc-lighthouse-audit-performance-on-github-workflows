@@ -7,7 +7,7 @@ module.exports = {
                     "performance"
                 ]
             },
-            puppeteerScript: "../scripts/lighthouse/audited-application-auth-middleware.cjs"
+            puppeteerScript: "./ci/scripts/lighthouse/audited-application-auth-middleware.cjs"
         },
         assert: {
             assertions: {
