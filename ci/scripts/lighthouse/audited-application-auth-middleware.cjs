@@ -29,6 +29,10 @@ module.exports = async function () {
 
     const page = await browser.newPage()
 
+    console.log({
+        component: "await page.goto( " + SIGNIN_URL + " )"
+    })
+
     await page.goto(
         SIGNIN_URL
     )
