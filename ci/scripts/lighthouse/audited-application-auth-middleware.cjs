@@ -1,5 +1,10 @@
 const puppeteer = require('puppeteer')
 
+console.log({
+    "process.env": process.env,
+    "process.env.URL_OF_SITE_TO_AUDIT_PERFORMANCE": process.env.URL_OF_SITE_TO_AUDIT_PERFORMANCE
+})
+
 const SIGNIN_FORM_ELEMENT_SLUG_TO_PUPPETEER_HTML_ELEMENT_SELECTOR = {
     EMAIL_INPUT: 'input[id="input-email"]',
     PASSWORD_INPUT: 'input[id="input-password"]',
