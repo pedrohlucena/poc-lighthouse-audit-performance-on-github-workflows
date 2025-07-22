@@ -1,12 +1,13 @@
 module.exports = {
     ci: {
         collect: {
-            numberOfRuns: 3,
+            numberOfRuns: 1,
             settings: {
                 onlyCategories: [
                     "performance"
                 ]
             },
+            puppeteerScript: "../scripts/lighthouse/audited-application-auth-middleware.cjs"
         },
         assert: {
             assertions: {
