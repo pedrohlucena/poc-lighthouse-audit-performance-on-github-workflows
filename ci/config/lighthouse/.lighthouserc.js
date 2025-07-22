@@ -1,5 +1,3 @@
-const puppeteer = require("puppeteer");
-
 module.exports = {
     ci: {
         collect: {
@@ -9,8 +7,6 @@ module.exports = {
                     "performance"
                 ]
             },
-            puppeteerScript: "ci/scripts/lighthouse/audited-application-auth-middleware.cjs",
-            chromePath: puppeteer.executablePath()
         },
         assert: {
             assertions: {
