@@ -8,6 +8,7 @@ on:
 
 env:
   ENV: dev
+  STATIC_URL_OF_SITE_TO_AUDIT_PERFORMANCE: https://web.letalk.com.br/board/410
 
 jobs:
   performance-audit:
@@ -86,9 +87,9 @@ jobs:
 
           URL_OF_SITE_TO_AUDIT_PERFORMANCE: ${{
             env.ENV == 'dev' &&
-            'https://web.letalk.com.br/board/410' ||
+            env.STATIC_URL_OF_SITE_TO_AUDIT_PERFORMANCE ||
             steps.deploy_site_preview.outputs.SITE_PREVIEW_URL
             }}
         with:
-          urls: "https://web.letalk.com.br/board/410"
+          urls: ${{ env.URL_OF_SITE_TO_AUDIT_PERFORMANCE }}
           configPath: "ci/config/lighthouse/.lighthouserc.js"
