@@ -8,7 +8,7 @@ console.log({
 const SIGNIN_FORM_ELEMENT_SLUG_TO_PUPPETEER_HTML_ELEMENT_SELECTOR = {
     EMAIL_INPUT: 'input[id="input-email"]',
     PASSWORD_INPUT: 'input[id="input-password"]',
-    SIGNIN_BUTTON: 'input[id="button-signin"]'
+    SIGNIN_BUTTON: 'button[id="button-signin"]'
 }
 
 const signInCredentials = {
