@@ -61,7 +61,8 @@ jobs:
 
           echo "SITE_PREVIEW_URL=$SITE_PREVIEW_URL" >> $GITHUB_OUTPUT
 
-      - name: Performance audit
+      - name: Performance audit (CLI)
+        if: false
         env:
           LIGHTHOUSE_CI_CLI_LIBRARY_VERSION: "0.14.0"
           URL_OF_SITE_TO_AUDIT_PERFORMANCE: ${{
@@ -75,3 +76,15 @@ jobs:
             --config=ci/config/lighthouse/.lighthouserc.js
 
           echo "foo"
+
+      - name: Performance audit (Github Workflow)
+        uses: treosh/lighthouse-ci-action@v12
+        env:
+          URL_OF_SITE_TO_AUDIT_PERFORMANCE: ${{
+            env.ENV == 'dev' &&
+            'https://web.letalk.com.br/board/410' ||
+            steps.deploy_site_preview.outputs.SITE_PREVIEW_URL
+            }}
+        with:
+          urls: "$URL_OF_SITE_TO_AUDIT_PERFORMANCE"
+          configPath: "ci/config/lighthouse/.lighthouserc.js"
