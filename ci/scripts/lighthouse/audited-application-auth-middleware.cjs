@@ -12,12 +12,11 @@ const SIGNIN_FORM_ELEMENT_SLUG_TO_PUPPETEER_HTML_ELEMENT_SELECTOR = {
 }
 
 const signInCredentials = {
-    email: "", // ⚠️ To alter ⚠️
-    password: "" // ⚠️ To alter ⚠️
+    email: process.env.FROM_CI_CD_PIPELINE_SIGNIN_EMAIL,
+    password: process.env.FROM_CI_CD_PIPELINE_SIGNIN_PASSWORD
 }
 
-const SIGNIN_BASE_URL = "" // ⚠️ To alter ⚠️
-const SIGNIN_PATH = "" // ⚠️ To alter ⚠️
+const SIGNIN_URL = process.env.FROM_CI_CD_PIPELINE_SIGNIN_URL
 
 module.exports = async function () {
     const browser = await puppeteer.launch({
@@ -31,7 +30,7 @@ module.exports = async function () {
     const page = await browser.newPage()
 
     await page.goto(
-        SIGNIN_BASE_URL + SIGNIN_PATH
+        SIGNIN_URL
     )
 
     await page.type(

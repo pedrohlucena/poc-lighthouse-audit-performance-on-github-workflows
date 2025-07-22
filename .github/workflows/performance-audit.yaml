@@ -80,6 +80,10 @@ jobs:
       - name: Performance audit (Github Workflow)
         uses: treosh/lighthouse-ci-action@v12
         env:
+          FROM_CI_CD_PIPELINE_SIGNIN_URL: ${{ secrets.SIGNIN_URL_OF_SITE_TO_AUDIT_PERFORMANCE }}
+          FROM_CI_CD_PIPELINE_SIGNIN_EMAIL: ${{ secrets.SIGNIN_EMAIL_OF_SITE_TO_AUDIT_PERFORMANCE }}
+          FROM_CI_CD_PIPELINE_SIGNIN_PASSWORD: ${{ secrets.SIGNIN_PASSWORD_OF_SITE_TO_AUDIT_PERFORMANCE }}
+
           URL_OF_SITE_TO_AUDIT_PERFORMANCE: ${{
             env.ENV == 'dev' &&
             'https://web.letalk.com.br/board/410' ||
